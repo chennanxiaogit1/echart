@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+
 // 引入全局样式
 import './assets/css/global.less'
 // 引入字体样式
@@ -29,3 +30,4 @@ new Vue({
   store,
   render: function (h) { return h(App) }
 }).$mount('#app')
+

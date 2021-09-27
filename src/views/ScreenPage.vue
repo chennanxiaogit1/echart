@@ -10,7 +10,7 @@
 			<span class="title">电商平台实时监控系统</span>
 			<div class="title-right">
 				<img :src="themeSrc" class="qiehuan" @click="changeTheme" />
-				<span class="datetime">2049-01-01 00:00:00</span>
+				<span class="datetime">{{ nowtime }}</span>
 			</div>
 		</header>
 		<div class="screen-body">
@@ -124,6 +124,7 @@
 
 	import { getThemeValue } from "@/utils/theme_utils";
 	import { mapState } from "vuex";
+	import * as dayjs from "dayjs";
 
 	export default {
 		components: {
@@ -142,17 +143,21 @@
 					map: false,
 					rank: false,
 					hot: false,
-					stock: false
-				}
+					stock: false,
+				},
+				nowtime:null,
+				timeId:null
 			};
 		},
 		created() {
 			this.$socket.registerCallBack("fullScreen", this.recvData);
 			this.$socket.registerCallBack("themeChange", this.recvThemeChange);
+			this.startInterval()
 		},
 		Unmounted() {
 			this.$socket.UnregisterCallBack("fullScreen");
 			this.$socket.UnregisterCallBack("themeChange");
+			clearInterval(this.timeId)
 		},
 		computed: {
 			...mapState(["theme"]),
@@ -170,7 +175,8 @@
 					backgroundColor: getThemeValue(this.theme).backgroundColor,
 					color: getThemeValue(this.theme).titleColor
 				};
-			}
+			},
+
 		},
 		methods: {
 			changeSize(chartName) {
@@ -216,6 +222,14 @@
 			},
 			recvThemeChange(ret) {
 				this.$store.commit("changeTheme");
+			},
+			startInterval() {
+				if(this.timeId) {
+					clearInterval(this.timeId)
+				}
+				this.timeId =setInterval(() => {
+					this.nowtime = dayjs().format("YYYY-MM-DD HH:mm:ss")
+				},1000)
 			}
 		}
 	};
