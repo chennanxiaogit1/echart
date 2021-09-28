@@ -158,6 +158,7 @@ import {mapState} from "vuex"
 				const start = this.currentIndex * 5;
 				const end = (this.currentIndex + 1) * 5;
 				const showData = this.allData.slice(start, end);
+				console.log(showData);
 				const seriesArr = showData.map((item, index) => {
 					return {
 						label: {
@@ -250,18 +251,6 @@ import {mapState} from "vuex"
 			}
 		}
 	};
-	// {
-	// 						center: centerPointers[0],
-	// 						hoverAnimation: false, //鼠标移入动画效果的移除
-	// label: {
-	// 	show: true,
-	// 	position: "center"
-	// },
-	// labelLine: {
-	// 	//指示线的移除
-	// 	show: false
-	// }
-	// 					},
 </script>
 
 <style>

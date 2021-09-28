@@ -107,7 +107,7 @@
 					return {
 						type: "effectScatter",
 						coordinateSystem: "geo",
-						data: item.children,
+						data: item.children,  //item.children为一个同类型的数组
 						name: item.name, //使得名字与图例保持一致
 						rippleEffect: {
 							scale: 5,

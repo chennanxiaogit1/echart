@@ -108,7 +108,7 @@
 						right: "4%",
 						top: "35%",
 						bottom: "1%",
-						containLabel: true
+						containLabel: true //是否包含文字
 					},
 					legend: {
 						left: 20,

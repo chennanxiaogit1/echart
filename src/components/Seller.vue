@@ -136,9 +136,9 @@ import {mapState} from "vuex"
 				const sellerValues = showData.map(item => item.value);
 				const dataOption = {
 					yAxis: {
-						data: sellerNames
+						data: sellerNames  //商家名称
 					},
-					series: [{ data: sellerValues }]
+					series: [{ data: sellerValues  }] //对应商家的值
 				};
 				this.chartInstance.setOption(dataOption);
 			},
